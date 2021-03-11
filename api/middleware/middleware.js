@@ -5,7 +5,7 @@ function logger(req, res, next) {
     `\n**** Logger **** 
     \nRequest Method: ${req.method}
     \nRequest URL: ${req.url}
-    \nTimestamp: ${req._startTime.toUTCString()}
+    \nTimestamp: ${new Date().toUTCString()}
     \n********
     `
   )
