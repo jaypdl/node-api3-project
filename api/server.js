@@ -5,7 +5,6 @@ const helmet = require('helmet')
 
 
 const cors = require('cors')
-const morgan = require('morgan')
 
 const { logger } = require('./middleware/middleware')
 
@@ -21,7 +20,11 @@ server.use(helmet()) // securing headers
 server.use(express.json())
 
 // global middlewares and the user's router need to be connected here
-server.use(morgan('dev'))
+if (process.env.NODE_ENV === 'development') {
+  const morgan = require('morgan')
+  server.use(morgan('dev'))
+}
+
 server.use(cors())
 server.use(logger) // custom logger middleware
 
