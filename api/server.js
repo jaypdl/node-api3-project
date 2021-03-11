@@ -1,8 +1,12 @@
+require('dotenv').config()
 // IMPORTS
 const express = require('express')
 const helmet = require('helmet')
+
+
 const cors = require('cors')
 const morgan = require('morgan')
+
 const { logger } = require('./middleware/middleware')
 
 const userRouter = require('./users/users-router')
