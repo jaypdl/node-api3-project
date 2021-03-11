@@ -1,10 +1,9 @@
-require('dotenv').config()
 // IMPORTS
 const express = require('express')
-// const helmet = require('helmet')
+const helmet = require('helmet')
 
 
-// const cors = require('cors')
+const cors = require('cors')
 
 const { logger } = require('./middleware/middleware')
 
@@ -14,7 +13,7 @@ const userRouter = require('./users/users-router')
 const server = express()
 
 // MIDDLEWARE
-// server.use(helmet()) // securing headers
+server.use(helmet()) // securing headers
 
 // remember express by default cannot parse JSON in request bodies
 server.use(express.json())
@@ -23,9 +22,10 @@ server.use(express.json())
 if (process.env.NODE_ENV === 'development') {
   const morgan = require('morgan')
   server.use(morgan('dev'))
+  console.log('development')
 }
 
-// server.use(cors())
+server.use(cors())
 server.use(logger) // custom logger middleware
 
 // ROUTES
